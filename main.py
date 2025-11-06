@@ -2,14 +2,13 @@ import tkinter as tk
 import math
 
 
-# --- Функция отрисовки полярной розы ---
 def draw_rose():
     canvas.delete("all")
     n = n_slider.get()
     d = d_slider.get()
 
     k = n / d
-    scale = 150  # Масштаб
+    scale = 150
     points = []
 
     for theta in range(0, 360 * d, 1):
@@ -19,14 +18,12 @@ def draw_rose():
         y = height / 2 - scale * r * math.sin(rad)
         points.append((x, y))
 
-    # Соединяем точки
     for i in range(len(points) - 1):
         canvas.create_line(points[i][0], points[i][1],
                            points[i + 1][0], points[i + 1][1],
                            fill="white", width=1.5)
 
 
-# --- Настройка интерфейса ---
 root = tk.Tk()
 root.title("Полярная роза")
 root.configure(bg="#2e2e2e")
@@ -35,7 +32,6 @@ width, height = 500, 500
 canvas = tk.Canvas(root, width=width, height=height, bg="#2e2e2e", highlightthickness=0)
 canvas.pack()
 
-# Слайдеры
 frame = tk.Frame(root, bg="#2e2e2e")
 frame.pack(pady=10)
 
@@ -51,3 +47,4 @@ d_slider.grid(row=1, column=1)
 
 draw_rose()
 root.mainloop()
+
